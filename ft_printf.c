@@ -6,7 +6,7 @@
 /*   By: esteudle <esteudle@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 11:54:33 by esteudle          #+#    #+#             */
-/*   Updated: 2024/11/28 12:02:27 by esteudle         ###   ########.fr       */
+/*   Updated: 2024/11/30 15:58:58 by esteudle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -31,13 +31,14 @@ int	case_conditions(const char *str, va_list ap)
 		return (ft_print_ptr(va_arg(ap, void *)));
 	if (*str == '%')
 		return (ft_putchar('%'));
+	return (0);
 }
 
 int	ft_printf(const char *str, ...)
 {
 	va_list	ap;
-	int				counter;
-	
+	int		counter;
+
 	counter = 0;
 	va_start(ap, str);
 	if (!str)

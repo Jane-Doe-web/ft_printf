@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   print_string.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: esteudle <esteudle@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/30 12:40:55 by esteudle          #+#    #+#             */
-/*   Updated: 2024/11/30 15:39:41 by esteudle         ###   ########.fr       */
+/*   Created: 2024/11/30 16:04:24 by esteudle          #+#    #+#             */
+/*   Updated: 2024/11/30 16:04:27 by esteudle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include <unistd.h>
 
-# include <stdarg.h>
-# include <unistd.h>
+int	ft_putchar(char c)
+{
+	write (1, &c, 1);
+	return (1);
+}
 
-int	case_conditions(const char *str, va_list ap);
-int	ft_printf(const char *str, ...);
-int	ft_putchar(char c);
-int	ft_putstr(char *s);
-int	ft_printnum(int n);
-int	ft_print_unsigned_int(unsigned int n);
-int	ft_print_lower_hexa(unsigned int n);
-int	ft_print_upper_hexa(unsigned int n);
-int	ft_print_ptr(void *ptr);
+int	ft_putstr(char *s)
+{
+	int	counter;
 
-#endif
+	counter = 0;
+	if (!s)
+	{
+		counter += write(1, "(null)", 6);
+		return (counter);
+	}
+	while (*s)
+	{
+		counter += write(1, s, 1);
+		s++;
+	}
+	return (counter);
+}
