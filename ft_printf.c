@@ -29,6 +29,8 @@ int	case_conditions(const char *str, va_list ap)
 		return (ft_print_upper_hexa(va_arg(ap, unsigned int)));
 	if (*str == 'p')
 		return (ft_print_ptr(va_arg(ap, void *)));
+	if (*str == '%')
+		return (ft_putchar('%'));
 }
 
 int	ft_printf(const char *str, ...)

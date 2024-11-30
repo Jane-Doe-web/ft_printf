@@ -51,4 +51,11 @@ int main()
         int result13 = printf("Hi, %X hello\n", n);
         printf("%d\n%d\n", result12, result13);
     }
+
+    {
+        char *str = "This is a string";
+        int result14 = ft_printf("Hi, %p hello\n" , str);
+        int result15 = printf("Hi, %p hello\n", str);
+        printf("%d\n%d\n", result14, result15);
+    }
 }

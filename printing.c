@@ -11,6 +11,9 @@ int ft_putstr(char *s)
     int counter;
 
     counter = 0;
+    if (!s)
+        counter += write(1, "(null)", 6);
+        return (counter);
     while (*s)
     {
         counter += write(1, s, 1);
@@ -53,7 +56,7 @@ int ft_print_unsigned_int(unsigned int n)
     return (counter);
 }
 
-int ft_print_lower_hexa(unsigned int n)
+int ft_print_lower_hexa(unsigned long n)
 {
     char    c;
     int counter;
@@ -83,7 +86,41 @@ int ft_print_upper_hexa(unsigned int n)
     return (counter);
 }
 
-int ft_print_ptr(void* ptr)
+/*int ft_print_ptr(void *ptr)
 {
-    
+    char    c;
+    int counter;
+    char    *base;
+    unsigned long   p;
+
+    counter = 0;
+    base = "0123456789abcdef";
+    p = (unsigned long)ptr;
+    if (!ptr)
+        counter += write (1, "(nil)", 5);
+    else
+        counter += write (1, "0x", 2);
+        if (p >= 16)
+            counter += ft_print_ptr((void *)(p / 16));
+        c = base[p % 16];
+        counter += write (1, &c, 1);
+    return (counter);
+}*/
+
+int ft_print_ptr(void *ptr)
+{
+    int counter;
+    unsigned long   p;
+
+    counter = 0;
+    p = (unsigned long)ptr;
+
+    if (!ptr)
+        counter += write (1, "(nil)", 5);
+    else
+    {
+        counter += write (1, "0x", 2);
+        counter += ft_print_lower_hexa(p);
+    }
+    return (counter);
 }
