@@ -38,17 +38,25 @@ int	ft_printf(const char *str, ...)
 {
 	va_list	ap;
 	int		counter;
+	int		res;
 
 	counter = 0;
 	va_start(ap, str);
 	if (!str)
 		return (-1);
-	while (*str)
+	while (*str != '\0')
 	{
 		if (*str == '%')
 		{
 			str++;
-			counter += case_conditions(str, ap);
+			res = case_conditions(str, ap);
+			if (!res)
+			{
+				counter += write(1, "%", 1);
+				counter += write(1, str++, 1);
+			}
+			else
+				counter += res;
 		}
 		else
 			counter += write(1, str, 1);
